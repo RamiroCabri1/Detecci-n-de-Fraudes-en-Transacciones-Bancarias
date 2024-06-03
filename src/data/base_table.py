@@ -1,37 +1,24 @@
-import psycopg2
-from dotenv import load_dotenv
 import os
 import pandas as pd
+import psycopg2
+from dotenv import load_dotenv
+from sqlalchemy import create_engine, text
+from sqlalchemy.orm import Session
 
 # Cargar las variables de entorno desde el archivo .env
 load_dotenv()
 
-# Obtener las variables de entorno
-db_name = os.getenv('DB_NAME')
-db_user = os.getenv('DB_USER')
-db_password = os.getenv('DB_PASSWORD')
-db_host = os.getenv('DB_HOST')
-db_port = os.getenv('DB_PORT')
-
 # Configurar la conexión
-conn = psycopg2.connect(
-    dbname=db_name,
-    user=db_user,
-    password=db_password,
-    host=db_host,
-    port=db_port
-)
+connection_string = f"postgresql://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}/{os.getenv('DB_NAME')}"
+engine = create_engine(connection_string).execution_options(autocommit=True)
 
 # Leer el CSV con pandas
-bank_account_fraud_df = pd.read_csv(".\Base.csv")
-
-# Crear un cursor
-cur = conn.cursor()
+bank_account_fraud_df = pd.read_csv("../data/raw/Base.csv")
 
 # Crear la tabla base
-cur.execute(
-    '''CREATE TABLE IF NOT EXISTS base (
-    applications_id INT PRIMARY KEY,
+create_table_query = '''
+CREATE TABLE IF NOT EXISTS base (
+    id SERIAL PRIMARY KEY,
     fraud_bool INTEGER,
     income FLOAT,
     name_email_similarity FLOAT,
@@ -66,12 +53,17 @@ cur.execute(
     month INTEGER
 );
 '''
-)
+
+with engine.connect() as connection:
+    connection.execute(text(create_table_query))
 
 # Insertar los datos en la tabla
-bank_account_fraud_df.to_sql('base', con = conn, if_exists = 'append')
+bank_account_fraud_df.to_sql('base', con=engine, if_exists='append', index=False)
 
-# Cerrar la conexión
-conn.commit()
-cur.close()
-conn.close()
+# Crear la session de la Bases de Datos 
+with Session(engine) as session:
+    # Commit cambios
+    session.commit()
+
+# Cerrar session
+session.close()
