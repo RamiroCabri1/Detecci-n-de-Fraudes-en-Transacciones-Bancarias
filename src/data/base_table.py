@@ -11,9 +11,10 @@ load_dotenv()
 # Configurar la conexión
 connection_string = f"postgresql://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}/{os.getenv('DB_NAME')}"
 engine = create_engine(connection_string).execution_options(autocommit=True)
+print("Connection established")
 
 # Leer el CSV con pandas
-bank_account_fraud_df = pd.read_csv("../data/raw/Base.csv")
+bank_account_fraud_df = pd.read_csv("./data/raw/Base.csv")
 
 # Crear la tabla base
 create_table_query = '''
