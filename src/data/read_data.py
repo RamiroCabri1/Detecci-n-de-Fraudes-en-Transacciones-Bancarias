@@ -9,18 +9,24 @@ from sqlalchemy.orm import Session
 load_dotenv(find_dotenv())
 
 # Configurar la conexión
-connection_string = f"user={os.getenv('DB_USER')} password={os.getenv('DB_PASSWORD')} host={os.getenv('DB_HOST')} dbname={os.getenv('DB_NAME')}"
-connection = psycopg2.connect(connection_string)
+connection_string = f"postgresql+psycopg2://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}/{os.getenv('DB_NAME')}"
+engine = create_engine(connection_string).execution_options(autocommit=True)
 print("Connection established")
 
-cursor = connection.cursor()
-
-# Fetch all rows from table
-cursor.execute("SELECT * FROM preprocessedDB;")
-rows = cursor.fetchall()
-
-# Print all rows
-
-for row in rows:
-    print("Data row = (%s, %s, %s)" %(str(row[0]), str(row[1]), str(row[2])))
-    break
+try:
+   with engine.connect() as connection:
+    
+        # Ejecutar la consulta para obtener todas las filas de la tabla
+        result = connection.execute(text("SELECT * FROM predata;"))
+        rows = result.fetchall()
+    
+        # Imprimir todas las filas
+        for row in rows:
+            print("Data row =(%s, %s, %s)" % (str(row[0]), str(row[1]), str(row[2])))
+            break
+    
+except Exception as e:
+    print(f"An error occurred: {e}")
+finally:
+    # Cerrar cursor y conexión
+    print("Connection closed")
