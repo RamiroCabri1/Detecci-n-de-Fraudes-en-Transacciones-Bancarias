@@ -18,7 +18,7 @@ bank_account_fraud_df = pd.read_csv("./data/Preprocessed/preprocessed_data.csv")
 
 # Crear la tabla base
 create_table_query = '''
-CREATE TABLE IF NOT EXISTS preprocessedDB (
+CREATE TABLE IF NOT EXISTS predata (
     id SERIAL PRIMARY KEY,
     income FLOAT,
     name_email_similarity FLOAT,
@@ -53,18 +53,25 @@ CREATE TABLE IF NOT EXISTS preprocessedDB (
 );
 '''
 
-with engine.connect() as connection:
-    connection.execute(text(create_table_query))
-    
+try:
+    with engine.connect() as connection:
+        connection.execute(text(create_table_query))
+        print("Table created successfully")
 
-# Insertar los datos en la tabla
-bank_account_fraud_df.to_sql('preprocessedDB', con=engine, if_exists='append', index=False)
-print('Datos creados')
+    # Insertar los datos en la tabla
+    bank_account_fraud_df.to_sql('predata', con=engine, if_exists='replace', index=False)
+    print('Data inserted successfully')
 
-# Crear la session de la Bases de Datos 
-with Session(engine) as session:
-    # Commit cambios
-    session.commit()
+except Exception as e:
+    print(f"An error occurred: {e}")
 
-# Cerrar session
-session.close()
+# Verificar la existencia de la tabla
+try:
+    with engine.connect() as connection:
+        result = connection.execute(text("SELECT * FROM information_schema.tables WHERE table_name = 'predata'"))
+        if result.rowcount > 0:
+            print("Table 'predata' exists.")
+        else:
+            print("Table 'predata' does not exist.")
+except Exception as e:
+    print(f"An error occurred when verifying the table: {e}")
