@@ -1,0 +1,14 @@
+{
+ "argv": [
+  "C:\\Users\\Usuario\\Desktop\\No-country\\c18-61-m-data-bi\\notebooks\\entorno\\Scripts\\python.exe",
+  "-m",
+  "ipykernel_launcher",
+  "-f",
+  "{connection_file}"
+ ],
+ "display_name": "entorno",
+ "language": "python",
+ "metadata": {
+  "debugger": true
+ }
+}
