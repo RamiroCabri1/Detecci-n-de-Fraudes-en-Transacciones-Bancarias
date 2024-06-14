@@ -60,10 +60,12 @@ Classification Report:
 ============================================================
 Model: RandomForestClassifier
 Accuracy: 0.99
+
 Confusion Matrix:
+
  [[295617   1074]
  [  3189    120]]
-Classification Report:
+
 Classification Report:
 |              | precision | recall | f1-score |  support |
 |--------------|-----------|--------|----------|----------|
@@ -76,6 +78,7 @@ Classification Report:
 ============================================================
 Model: GradientBoostingClassifier
 Accuracy: 0.98
+
 Confusion Matrix:
 
  [[293324   3367]
