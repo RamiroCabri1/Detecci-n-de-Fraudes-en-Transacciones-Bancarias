@@ -58,6 +58,7 @@ Classification Report:
 |weighted avg  |   0.98    |  0.70  |   0.82   |  300000  |
 
 ============================================================
+
 Model: RandomForestClassifier
 Accuracy: 0.99
 
@@ -76,6 +77,7 @@ Classification Report:
 |weighted avg  |   0.98    |  0.99  |   0.98   |  300000  |
 
 ============================================================
+
 Model: GradientBoostingClassifier
 Accuracy: 0.98
 
