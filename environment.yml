@@ -17,3 +17,5 @@ dependencies:
   - dotenv
   - sqlalchemy
   - psycopg2-binary
+  - imbalanced-learn
+  - py-xgboost
