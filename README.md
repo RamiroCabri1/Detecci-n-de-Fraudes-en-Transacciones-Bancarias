@@ -6,12 +6,15 @@
 
 ## **Introducción**
 Este repositorio contiene el código y la documentación para un proyecto de detección de fraude en cuentas bancarias para el cumplimiento del proyecto de simulación en No Country.
-Se empleó como fuente de datos, un dataset sintetico, extraido de Kaggle: 
+Se empleó como fuente de datos, un dataset sintetico, extraido de Kaggle:
+
 ![Bank Account Fraud Dataset Suite (NeurIPS 2022)](https://www.kaggle.com/datasets/sgpjesus/bank-account-fraud-dataset-neurips-2022)
+
 Se utilizan tres modelos de machine learning para identificar transacciones fraudulentas en un conjunto de datos desbalanceado. Los modelos incluyen Regresión Logística, Bosque Aleatorio y Gradient Boosting. Además, se aplica SMOTE (Synthetic Minority Over-sampling Technique) para balancear las clases en el conjunto de datos de entrenamiento.
 
 ## **Descripción del Dataset**
 Para más información sobre el dataset ingresar a este link:
+
 ![Bank Account Fraud Dataset Suite (NeurIPS 2022)](https://github.com/feedzai/bank-account-fraud/blob/main/documents/datasheet.pdf)
 
 ## Requisitos
@@ -34,15 +37,19 @@ Para más información sobre el dataset ingresar a este link:
 
 ## Conexión a la Base de Datos
 Se realizó la conexión mediante la creación de un servidor de Postgres en Azure de la siguiente forma:
+
 ![Base de Datos](/reports/figures/Slide3.PNG)
 
 ## Tecnologías Empleadas
+
 ![Tecnologías](/reports/figures/Slide4.PNG)
 
 ## Resultados
 
 Model: LogisticRegression
+
 Accuracy: 0.70
+
 Confusion Matrix:
 
  [[208770  87921]
@@ -60,6 +67,7 @@ Classification Report:
 ============================================================
 
 Model: RandomForestClassifier
+
 Accuracy: 0.99
 
 Confusion Matrix:
@@ -79,6 +87,7 @@ Classification Report:
 ============================================================
 
 Model: GradientBoostingClassifier
+
 Accuracy: 0.98
 
 Confusion Matrix:
