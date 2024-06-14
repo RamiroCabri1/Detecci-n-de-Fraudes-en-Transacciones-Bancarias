@@ -44,17 +44,19 @@ Se realizó la conexión mediante la creación de un servidor de Postgres en Azu
 Model: LogisticRegression
 Accuracy: 0.70
 Confusion Matrix:
+
  [[208770  87921]
  [  1208   2101]]
+
 Classification Report:
-               precision    recall  f1-score   support
-
-           0       0.99      0.70      0.82    296691
-           1       0.02      0.63      0.05      3309
-
-    accuracy                           0.70    300000
-   macro avg       0.51      0.67      0.43    300000
-weighted avg       0.98      0.70      0.82    300000
+|              | precision | recall | f1-score |  support |
+|--------------|-----------|--------|----------|----------|
+|          0   |   0.99    |  0.70  |   0.82   |  296691  |
+|          1   |   0.02    |  0.63  |   0.05   |    3309  |
+|              |           |        |          |          |
+|accuracy      |           |        |   0.70   |  300000  |
+|macro avg     |   0.51    |  0.67  |   0.43   |  300000  |
+|weighted avg  |   0.98    |  0.70  |   0.82   |  300000  |
 
 ============================================================
 Model: RandomForestClassifier
@@ -63,30 +65,35 @@ Confusion Matrix:
  [[295617   1074]
  [  3189    120]]
 Classification Report:
-               precision    recall  f1-score   support
-
-           0       0.99      1.00      0.99    296691
-           1       0.10      0.04      0.05      3309
-
-    accuracy                           0.99    300000
-   macro avg       0.54      0.52      0.52    300000
-weighted avg       0.98      0.99      0.98    300000
+Classification Report:
+|              | precision | recall | f1-score |  support |
+|--------------|-----------|--------|----------|----------|
+|          0   |   0.99    |  1.00  |   0.99   |  296691  |
+|          1   |   0.10    |  0.04  |   0.05   |    3309  |
+|              |           |        |          |          |
+|accuracy      |           |        |   0.70   |  300000  |
+|macro avg     |   0.54    |  0.67  |   0.43   |  300000  |
+|weighted avg  |   0.98    |  0.99  |   0.98   |  300000  |
 
 ============================================================
 Model: GradientBoostingClassifier
 Accuracy: 0.98
 Confusion Matrix:
+
  [[293324   3367]
  [  2978    331]]
+
 Classification Report:
-               precision    recall  f1-score   support
 
-           0       0.99      0.99      0.99    296691
-           1       0.09      0.10      0.09      3309
-
-    accuracy                           0.98    300000
-   macro avg       0.54      0.54      0.54    300000
-weighted avg       0.98      0.98      0.98    300000
+Classification Report:
+|              | precision | recall | f1-score |  support |
+|--------------|-----------|--------|----------|----------|
+|          0   |   0.99    |  0.99  |   0.99   |  296691  |
+|          1   |   0.09    |  0.10  |   0.09   |    3309  |
+|              |           |        |          |          |
+|accuracy      |           |        |   0.98   |  300000  |
+|macro avg     |   0.54    |  0.54  |   0.54   |  300000  |
+|weighted avg  |   0.98    |  0.98  |   0.98   |  300000  |
 
 ============================================================
 
